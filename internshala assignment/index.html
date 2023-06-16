@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Website</title>
+  <style>
+    /* CSS styling for the top menu */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    #top-menu {
+      background-color: #f1f1f1;
+      overflow: hidden;
+    }
+
+    #top-menu a {
+      float: left;
+      display: block;
+      color: #333;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #top-menu a:hover {
+      background-color: #ddd;
+    }
+
+    #top-menu a.login {
+      float: right;
+      color: red;
+    }
+
+    /* CSS styling for the page content */
+    #content {
+      margin-top: 0px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* CSS styling for the modal window */
+   .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #f9f9f9;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: 500px;
+    max-width: 90%;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #555;
+    text-decoration: none;
+  }
+
+  .modal-input {
+    margin-bottom: 20px;
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+
+  .modal-button {
+    margin: 10px;
+    padding: 12px 20px;
+    width: 180px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .modal-button.google {
+    background-color: #db4437;
+  }
+
+  .modal-button.facebook {
+    background-color: #3b5998;
+  }
+
+  .modal-button:hover {
+    background-color: #45a049;
+  }
+
+  .modal-separator {
+    margin: 20px 0;
+    color: #888;
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .note {
+    margin-top: 20px;
+    color: #666;
+    font-style: italic;
+    font-size: 14px;
+  }
+
+  .admin-login {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .admin-login:hover {
+    text-decoration: underline;
+  }
+
+/* Media query for smaller screens */
+@media screen and (max-width: 600px) {
+  .modal-content {
+    margin: 5% auto;
+    padding: 10vw;
+    width: 90vw;
+  }
+}
+
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .modal-input {
+      margin: 10px 0;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .modal-button {
+      margin: 10px 5px;
+      padding: 10px;
+      width: 48%;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .modal-button.google {
+      background-color: red;
+    }
+
+    .modal-button.facebook {
+      background-color: blue;
+    }
+
+    .modal-button:hover {
+      background-color: #45a049;
+    }
+
+    .note {
+      margin-top: 20px;
+      color: #333;
+      font-style: italic;
+    }
+
+    .admin-login {
+      color: red;
+      float: right;
+    }
+
+    /* CSS styling for the form */
+    #popupContainer {
+      display: none;
+      position: fixed;
+      z-index: 2;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    #popupContent {
+      background-color: #fefefe;
+      margin: 10% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 400px;
+      text-align: center;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-input {
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .form-button {
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .form-button:hover {
+      background-color: #45a049;
+    }
+    #data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #data-table th, #data-table td {
+      border: 1px solid #888;
+      padding: 8px;
+    }
+
+    #data-table th {
+      background-color: #f1f1f1;
+      font-weight: bold;
+    }
+    #map {
+      height: 600px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Menu -->
+  <div id="top-menu">
+    <a href="#">Home</a>
+    <a href="#">Our Product</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact Us</a>
+    <a button id="add-location-button" style="display: none;" onclick="openLocationForm()">Add Location</abutton>
+    <a href="#" class="login" onclick="openModal()">Login</a>
+  </div>
+
+  <!-- Page Content -->
+  <div id="content">
+    <h1>Welcome To Our Website!</h1>
+    <div id="map"></div>
+    <button id="add-location-button" style="display: none;" onclick="openLocationForm()">Add Location</button>
+    <table id="data-table" style="margin-top: 20px;">
+      <thead>
+        <tr>
+          <th>City</th>
+          <th>Location</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Login Modal -->
+<div id="loginModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <h2>Welcome to Login</h2>
+    <input type="text" id="phoneNumberInput" placeholder="Phone Number" class="form-input" required pattern="[0-9]{10}" maxlength="10" title="Please enter a 10-digit phone number">
+    <button class="modal-button" onclick="showAddLocationButton()">Login</button>
+    <div class="modal-separator">or</div>
+    <div class="modal-buttons">
+      <button class="modal-button google">Login with Google</button>
+      <button class="modal-button facebook">Login with Facebook</button>
+    </div>
+    <div class="note">NOTE: If you have entered an Email Id/Phone number, which is not registered on Sigma Value, it will automatically go for signup.</div>
+    <a href="#" class="admin-login">Admin Login</a>
+  </div>
+</div>
+
+
+
+  <!-- Popup Form -->
+  <div id="popupContainer" style="display: none;">
+    <div id="popupContent">
+      <h2>Enter Details</h2>
+      <form onsubmit="handleSubmit(event)">
+        <label class="form-label">City:</label>
+        <input type="text" id="cityInput" placeholder="City" class="form-input">
+        <label class="form-label">Location:</label>
+        <input type="text" id="locationInput" placeholder="Location" class="form-input">
+        <label class="form-label">Latitude:</label>
+        <input type="text" id="latitudeInput" placeholder="Latitude" class="form-input">
+        <label class="form-label">Longitude:</label>
+        <input type="text" id="longitudeInput" placeholder="Longitude" class="form-input">
+        <button type="submit" class="form-button">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript code -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDrebQa1d_UKo61N_7Qep_gLdUjPoeNl8c&callback=initMap" async defer></script>
+  <script>
+    let locations = [];
+
+    // Function to open the login modal
+    function openModal() {
+      document.getElementById("loginModal").style.display = "block";
+    }
+
+    // Function to close the login modal
+    function closeModal() {
+      document.getElementById("loginModal").style.display = "none";
+    }
+
+    // Function to show the "Add Location" button
+    function showAddLocationButton() {
+      document.getElementById("add-location-button").style.display = "block";
+      closeModal();
+    }
+
+    // Function to open the location form
+    function openLocationForm() {
+      document.getElementById("popupContainer").style.display = "block";
+    }
+
+    // Function to close the location form
+    function closeLocationForm() {
+      document.getElementById("popupContainer").style.display = "none";
+    }
+   
+   // Function to handle the form submission
+function handleSubmit(event) {
+  event.preventDefault();
+  const city = document.getElementById("cityInput").value;
+  const location = document.getElementById("locationInput").value;
+  const latitude = document.getElementById("latitudeInput").value;
+  const longitude = document.getElementById("longitudeInput").value;
+
+  if (city.trim() === "" || location.trim() === "" || latitude.trim() === "" || longitude.trim() === "") {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  const newRow = createRow(city, location, latitude, longitude);
+  document.getElementById("data-table").getElementsByTagName("tbody")[0].appendChild(newRow);
+
+  const newLocation = { city, location, latitude, longitude };
+  locations.push(newLocation);
+
+  closeLocationForm();
+  clearForm();
+  updateMap();
+}
+
+
+    // Function to create a new row in the table
+    function createRow(city, location, latitude, longitude) {
+      const row = document.createElement("tr");
+
+      const cityCell = document.createElement("td");
+      cityCell.textContent = city;
+      row.appendChild(cityCell);
+
+      const locationCell = document.createElement("td");
+      locationCell.textContent = location;
+      row.appendChild(locationCell);
+
+      const latitudeCell = document.createElement("td");
+      latitudeCell.textContent = latitude;
+      row.appendChild(latitudeCell);
+
+      const longitudeCell = document.createElement("td");
+      longitudeCell.textContent = longitude;
+      row.appendChild(longitudeCell);
+
+      return row;
+    }
+
+    // Function to clear the form inputs
+    function clearForm() {
+      document.getElementById("cityInput").value = "";
+      document.getElementById("locationInput").value = "";
+      document.getElementById("latitudeInput").value = "";
+      document.getElementById("longitudeInput").value = "";
+    }
+
+    // Function to update the map with the locations
+  function updateMap() {
+      const mapContainer = document.getElementById("map");
+      mapContainer.style.height = "600px"; // Adjust the map height here if needed
+
+      const map = new google.maps.Map(mapContainer, {
+        center: { lat: 0, lng: 0 },
+        zoom: 2,
+      });
+
+      locations.forEach((location) => {
+        const marker = new google.maps.Marker({
+          position: { lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) },
+          map: map,
+        });
+      });
+    }
+
+    // Initialize the map when the Google Maps API is loaded
+    function initMap() {
+      updateMap();
+    }
+    function updateTable() {
+      const table = document.getElementById("data-table").getElementsByTagName("tbody")[0];
+      table.innerHTML = ""; // Clear existing table content
+
+      locations.forEach((location) => {
+        const newRow = createRow(location.city, location.location, location.latitude, location.longitude);
+        table.appendChild(newRow);
+      });
+    }
+  </script>
+</body>
+</html>
